@@ -2,29 +2,28 @@
   <div class="project-container">
     <div class="form-contain">
       <el-form :inline="true" class="form-inline">
-        <el-form-item label="战 区：" class="pro-form-item">
-          <el-select v-model="user" placeholder="活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="区域：" class="pro-form-item">
+          <el-select v-model="zq" placeholder="活动区域">
+            <el-option label="区域一" value="shanghai" />
+            <el-option label="区域二" value="beijing" />
           </el-select>
         </el-form-item>
-        <el-form-item label="军兵种：" class="pro-form-item">
-          <el-select v-model="region" placeholder="活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="种类：" class="pro-form-item">
+          <el-select v-model="jbz" placeholder="活动区域">
+            <el-option label="区域一" value="shanghai" />
+            <el-option label="区域二" value="beijing" />
           </el-select>
         </el-form-item>
-        <el-form-item label="战略方向：" class="pro-form-item">
-          <el-select v-model="region1" placeholder="活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="方向：" class="pro-form-item">
+          <el-select v-model="zl" placeholder="活动区域">
+            <el-option label="区域一" value="shanghai" />
+            <el-option label="区域二" value="beijing" />
           </el-select>
         </el-form-item>
         <el-form-item class="pro-form-item">
-          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button type="primary">查询</el-button>
         </el-form-item>
       </el-form>
-      
     </div>
 
     <el-card class="project-card">
@@ -38,55 +37,56 @@
         max-height="500"
         stripe
       >
-        <el-table-column type="index" label="序号" width="80"></el-table-column>
-        <el-table-column prop="name" label="项目名称"></el-table-column>
-        <el-table-column prop="area" label="战区"></el-table-column>
-        <el-table-column prop="type" label="军兵种"></el-table-column>
-        <el-table-column prop="direction" label="战略方向"></el-table-column>
+        <el-table-column type="index" label="序号" width="80" />
+        <el-table-column prop="name" label="项目名称" />
+        <el-table-column prop="area" label="区域" />
+        <el-table-column prop="jbzName" label="种类" />
+        <el-table-column prop="direction" label="方向" />
         <el-table-column prop="operation" label="操作">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="handleEdit(scope.$index, scope.row)">查看拓扑</el-button>
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleDelete(scope.$index, scope.row)">评估</el-button>
+          <template>
+            <el-button size="mini">查看拓扑</el-button>
+            <el-button size="mini" type="primary">评估</el-button>
           </template>
         </el-table-column>
       </el-table>
       <div class="project-card-pagination">
-        <el-pagination
-          layout="prev, pager, next"
-          :total="1000">
-        </el-pagination>
+        <el-pagination layout="prev, pager, next" :total="1000" />
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import axios from "axios";
 
 export default {
-  name: 'Dashboard',
   data() {
     return {
-      user: '',
-      region: '',
-      region1: '',
-      tableData: [
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'},
-        {name: 'xxx', area: '南方战区', type: '海军', direction: 'xxx'}
-      ]
+      zq: "",
+      jbz: "",
+      zl: "",
+      tableData: []
     };
+  },
+  created() {
+    this.getList();
+  },
+  methods: {
+    async getList() {
+      let res = await axios.get("/security/v1/projects/selectProjects.json");
+      let resData = res.data;
+
+      // console.log(resData);
+      if (resData.respCode !== 200) {
+        this.$message.error(`请求错误, 错误码${resData.respCode}`);
+        return;
+      }
+
+      this.tableData = resData.data.data;
+      console.log(this.tableData);
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
