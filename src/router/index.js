@@ -45,7 +45,7 @@ export const constantRoutes = [{
     }]
   },
 
-  {
+  /* {
     path: "/single",
     component: Layout,
     redirect: "/single/topology",
@@ -82,9 +82,9 @@ export const constantRoutes = [{
         }
       }
     ]
-  },
+  }, */
 
-  {
+  /* {
     path: "/comprehensive",
     component: Layout,
     redirect: "/comprehensive/comprehensive",
@@ -98,7 +98,38 @@ export const constantRoutes = [{
         icon: "form"
       }
     }]
+  }, */
+
+  {
+    path: "/evo",
+    component: Layout,
+    children: [{
+      path: "index",
+      name: "evo",
+      component: () => import("@/views/topology/index"),
+      meta: {
+        title: "评估",
+        icon: "form"
+      }
+    }, {
+      path: "live",
+      name: "live",
+      component: () => import("@/views/live/index"),
+      hidden: true
+    }, {
+      path: "maintain",
+      name: "maintain",
+      component: () => import("@/views/maintain/index"),
+      hidden: true
+    }, {
+      path: "comprehensive",
+      name: "comprehensive",
+      component: () => import("@/views/comprehensive/index"),
+      hidden: true
+    }]
   },
+
+
 
   // 404 page must be placed at the end !!!
   {

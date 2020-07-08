@@ -178,7 +178,7 @@ export default {
       this.isShow = true;
     },
     prevStep() {
-      this.$router.push({name: "topology"});
+      this.$router.push({name: "evo"});
     },
     nextStep() {
       this.$router.push({name: "maintain"});
