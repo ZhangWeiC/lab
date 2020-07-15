@@ -17,11 +17,11 @@
                 <i class="el-icon-info"></i>
               </el-tooltip>
             </p>
-            <div class="compre-card-item-value">{{item.value | formatNumber}}</div>
+            <div class="compre-card-item-value">{{item.value}}</div>
             <p class="compre-card-item-ava">
               <span>
                 平均值：
-                <b>{{item.average | formatNumber}}</b>
+                <b>{{item.average}}</b>
               </span>
             </p>
           </el-card>
@@ -36,11 +36,11 @@
                 <i class="el-icon-info"></i>
               </el-tooltip>
             </p>
-            <div class="compre-card-item-value">{{item.value | formatNumber}}</div>
+            <div class="compre-card-item-value">{{item.value}}</div>
             <p class="compre-card-item-ava">
               <span>
                 平均值：
-                <b>{{item.average | formatNumber}}</b>
+                <b>{{item.average}}</b>
               </span>
             </p>
           </el-card>
@@ -55,11 +55,11 @@
                 <i class="el-icon-info"></i>
               </el-tooltip>
             </p>
-            <div class="compre-card-item-value">{{item.value | formatNumber}}</div>
+            <div class="compre-card-item-value">{{item.value}}</div>
             <p class="compre-card-item-ava">
               <span>
                 平均值：
-                <b>{{item.average | formatNumber}}</b>
+                <b>{{item.average}}</b>
               </span>
             </p>
           </el-card>

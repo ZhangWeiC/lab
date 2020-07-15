@@ -2,11 +2,6 @@
   <div class="single-container">
     <el-card class="single-card">
       <div slot="header" class="card-header">
-        <span>拓扑安全评估</span>
-      </div>
-    </el-card>
-    <el-card class="single-card">
-      <div slot="header" class="card-header">
         <span>单项指标展示</span>
       </div>
       <el-row :gutter="20">

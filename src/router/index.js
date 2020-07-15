@@ -103,30 +103,57 @@ export const constantRoutes = [{
   {
     path: "/evo",
     component: Layout,
+    redirect: '/evo/index',
+    meta: {
+      title: "评估",
+      icon: "form"
+    },
     children: [{
       path: "index",
       name: "evo",
-      component: () => import("@/views/topology/index"),
-      meta: {
-        title: "评估",
-        icon: "form"
-      }
-    }, {
-      path: "live",
-      name: "live",
-      component: () => import("@/views/live/index"),
-      hidden: true
-    }, {
-      path: "maintain",
-      name: "maintain",
-      component: () => import("@/views/maintain/index"),
-      hidden: true
-    }, {
-      path: "comprehensive",
-      name: "comprehensive",
-      component: () => import("@/views/comprehensive/index"),
-      hidden: true
+      component: () => import("@/views/evo/index"),
+      hidden: true,
+      children: [
+        {
+          path: "single",
+          name: "single",
+          component: () => import("@/views/topology/index"),
+          hidden: true
+        },
+        {
+          path: "live",
+          name: "live",
+          component: () => import("@/views/live/index"),
+          hidden: true
+        }, {
+          path: "maintain",
+          name: "maintain",
+          component: () => import("@/views/maintain/index"),
+          hidden: true
+        }, {
+          path: "comprehensive",
+          name: "comprehensive",
+          component: () => import("@/views/comprehensive/index"),
+          hidden: true
+        }
+      ],
     }]
+    // , {
+    //   path: "live",
+    //   name: "live",
+    //   component: () => import("@/views/live/index"),
+    //   hidden: true
+    // }, {
+    //   path: "maintain",
+    //   name: "maintain",
+    //   component: () => import("@/views/maintain/index"),
+    //   hidden: true
+    // }, {
+    //   path: "comprehensive",
+    //   name: "comprehensive",
+    //   component: () => import("@/views/comprehensive/index"),
+    //   hidden: true
+    // }]
   },
 
 
